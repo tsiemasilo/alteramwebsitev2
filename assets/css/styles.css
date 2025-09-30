@@ -398,20 +398,15 @@ section {
     margin-bottom: 50px;
 }
 
-.video-section {
-    padding: 40px 20px;
-    background: var(--bg-light);
-}
-
 .video-container {
     position: relative;
     max-width: 95%;
-    margin: 0 auto;
+    margin: 60px auto 0;
     border-radius: 30px;
     overflow: hidden;
 }
 
-.video-section video {
+.video-container video {
     width: 100%;
     height: auto;
     display: block;
