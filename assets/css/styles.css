@@ -404,6 +404,7 @@ section {
     margin: 60px auto 0;
     border-radius: 30px;
     overflow: hidden;
+    background: #000;
 }
 
 .video-container video {
@@ -411,6 +412,7 @@ section {
     height: auto;
     display: block;
     border-radius: 30px;
+    object-fit: contain;
 }
 
 .video-sound-toggle {
@@ -430,6 +432,13 @@ section {
     justify-content: center;
     transition: all 0.3s ease;
     z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-container:hover .video-sound-toggle {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .video-sound-toggle:hover {
