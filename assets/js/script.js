@@ -146,4 +146,23 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    const videoSoundToggle = document.getElementById('videoSoundToggle');
+    const introVideo = document.getElementById('introVideo');
+    
+    if (videoSoundToggle && introVideo) {
+        videoSoundToggle.addEventListener('click', function() {
+            if (introVideo.muted) {
+                introVideo.muted = false;
+                this.classList.add('unmuted');
+                this.querySelector('i').classList.remove('fa-volume-mute');
+                this.querySelector('i').classList.add('fa-volume-up');
+            } else {
+                introVideo.muted = true;
+                this.classList.remove('unmuted');
+                this.querySelector('i').classList.remove('fa-volume-up');
+                this.querySelector('i').classList.add('fa-volume-mute');
+            }
+        });
+    }
 });
