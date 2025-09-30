@@ -10,7 +10,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-color, #2c3e7a) 0%, #1a2847 100%);
+    background: linear-gradient(135deg, var(--primary-color, #2c3e7a), #1a2847, var(--secondary-color, #f5a623), var(--primary-color, #2c3e7a));
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,9 +30,10 @@
 }
 
 .loading-logo {
-    width: 250px;
+    width: 450px;
     height: auto;
-    animation: logoAnimation 2s ease-in-out;
+    max-width: 90%;
+    animation: logoAnimation 3.5s ease-in-out;
 }
 
 @keyframes logoAnimation {
@@ -40,11 +43,23 @@
     }
     50% {
         opacity: 1;
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
     100% {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
