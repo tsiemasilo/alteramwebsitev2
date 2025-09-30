@@ -47,19 +47,32 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.remove('scrolled');
         }
         
-        if (window.scrollY > 50 && scrollStage === 0) {
-            scrollStage = 1;
-            heroLogoInitial.classList.add('hidden');
-            setTimeout(function() {
+        if (window.scrollY > 50 && window.scrollY < 600) {
+            if (scrollStage !== 1) {
+                scrollStage = 1;
+                heroLogoInitial.classList.add('hidden');
+                signatureText.classList.remove('hidden');
                 signatureText.classList.add('visible');
-            }, 200);
-        }
-        
-        if (window.scrollY > 300 && scrollStage === 1) {
-            scrollStage = 2;
-            setTimeout(function() {
+                heroContent.classList.remove('visible');
+                heroContent.classList.add('hidden');
+            }
+        } else if (window.scrollY >= 600) {
+            if (scrollStage !== 2) {
+                scrollStage = 2;
+                signatureText.classList.remove('visible');
+                signatureText.classList.add('hidden');
+                heroContent.classList.remove('hidden');
                 heroContent.classList.add('visible');
-            }, 500);
+            }
+        } else if (window.scrollY <= 50) {
+            if (scrollStage !== 0) {
+                scrollStage = 0;
+                heroLogoInitial.classList.remove('hidden');
+                signatureText.classList.remove('visible');
+                signatureText.classList.add('hidden');
+                heroContent.classList.remove('visible');
+                heroContent.classList.add('hidden');
+            }
         }
     });
 

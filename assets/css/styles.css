@@ -188,7 +188,7 @@ html {
 
 .hero {
     position: relative;
-    height: 100vh;
+    height: 200vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -250,6 +250,13 @@ html {
     animation: signatureAppear 1.5s ease forwards;
 }
 
+.signature-text.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(0.5);
+    filter: blur(10px);
+    transition: all 0.8s ease;
+}
+
 @keyframes signatureAppear {
     0% {
         opacity: 0;
@@ -272,6 +279,10 @@ html {
 
 .hero-content.visible {
     opacity: 1;
+}
+
+.hero-content.hidden {
+    opacity: 0;
 }
 
 .hero-title {
