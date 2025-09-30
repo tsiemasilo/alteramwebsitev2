@@ -205,6 +205,20 @@ html {
     opacity: 0.3;
 }
 
+.hero-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+.hero-stage-inner {
+    position: relative;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
 .hero-logo-initial {
     position: absolute;
     top: 50%;
