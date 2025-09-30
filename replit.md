@@ -31,7 +31,19 @@ The website runs on port 5000 using a Python HTTP server with cache control head
 ## Deployment
 Configured for Replit Autoscale deployment, suitable for static website hosting.
 
+## Replit Environment Setup
+- **Python Module**: Python 3.11 installed and configured
+- **Workflow**: Configured to run `python server.py` on port 5000
+- **Server**: Binds to 0.0.0.0:5000 for proper Replit proxy compatibility
+- **Cache Control**: Headers configured to prevent caching during development
+- **Deployment**: Autoscale deployment configured for production
+
 ## Recent Changes
+- September 30, 2025: Imported from GitHub and configured for Replit environment
+  - Verified Python 3.11 installation
+  - Confirmed workflow running successfully on port 5000
+  - Configured deployment for autoscale (static website hosting)
+  - All assets loading correctly (HTML, CSS, JS, images)
 - September 30, 2024: Initial website creation with all sections
 - Integrated Alteram logo and brand colors (navy blue #2c3e7a and orange #f5a623)
 - Implemented smooth scrolling navigation
