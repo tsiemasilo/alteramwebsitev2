@@ -1,3 +1,10 @@
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    setTimeout(function() {
+        loadingScreen.classList.add('hidden');
+    }, 2500);
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenuLeft = document.getElementById('navMenuLeft');
