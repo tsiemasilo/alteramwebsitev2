@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navMenu = document.getElementById('navMenu');
+    const navMenuLeft = document.getElementById('navMenuLeft');
+    const navMenuRight = document.getElementById('navMenuRight');
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-menu a');
 
     mobileMenuBtn.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
+        navMenuLeft.classList.toggle('active');
+        navMenuRight.classList.toggle('active');
         const icon = this.querySelector('i');
-        if (navMenu.classList.contains('active')) {
+        if (navMenuLeft.classList.contains('active')) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
         } else {
@@ -18,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
+            navMenuLeft.classList.remove('active');
+            navMenuRight.classList.remove('active');
             const icon = mobileMenuBtn.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
