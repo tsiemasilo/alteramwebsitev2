@@ -206,7 +206,7 @@ html {
 }
 
 .hero-logo-initial {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -227,7 +227,7 @@ html {
 }
 
 .signature-text {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-8deg);
@@ -268,7 +268,7 @@ html {
 }
 
 .hero-content {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
