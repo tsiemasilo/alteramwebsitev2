@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroContent = document.getElementById('heroContent');
     
     let scrollStage = 0;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
     mobileMenuBtn.addEventListener('click', function() {
         navMenuLeft.classList.toggle('active');
@@ -41,38 +43,54 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        const currentScrollY = window.scrollY;
         
-        if (window.scrollY > 50 && window.scrollY < 600) {
-            if (scrollStage !== 1) {
-                scrollStage = 1;
-                heroLogoInitial.classList.add('hidden');
-                signatureText.classList.remove('hidden');
-                signatureText.classList.add('visible');
-                heroContent.classList.remove('visible');
-                heroContent.classList.add('hidden');
-            }
-        } else if (window.scrollY >= 600) {
-            if (scrollStage !== 2) {
-                scrollStage = 2;
-                signatureText.classList.remove('visible');
-                signatureText.classList.add('hidden');
-                heroContent.classList.remove('hidden');
-                heroContent.classList.add('visible');
-            }
-        } else if (window.scrollY <= 50) {
-            if (scrollStage !== 0) {
-                scrollStage = 0;
-                heroLogoInitial.classList.remove('hidden');
-                signatureText.classList.remove('visible');
-                signatureText.classList.add('hidden');
-                heroContent.classList.remove('visible');
-                heroContent.classList.add('hidden');
-            }
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    navbar.classList.add('hidden');
+                } else if (currentScrollY < lastScrollY) {
+                    navbar.classList.remove('hidden');
+                }
+                
+                if (currentScrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                if (currentScrollY > 50 && currentScrollY < 600) {
+                    if (scrollStage !== 1) {
+                        scrollStage = 1;
+                        heroLogoInitial.classList.add('hidden');
+                        signatureText.classList.remove('hidden');
+                        signatureText.classList.add('visible');
+                        heroContent.classList.remove('visible');
+                        heroContent.classList.add('hidden');
+                    }
+                } else if (currentScrollY >= 600) {
+                    if (scrollStage !== 2) {
+                        scrollStage = 2;
+                        signatureText.classList.remove('visible');
+                        signatureText.classList.add('hidden');
+                        heroContent.classList.remove('hidden');
+                        heroContent.classList.add('visible');
+                    }
+                } else if (currentScrollY <= 50) {
+                    if (scrollStage !== 0) {
+                        scrollStage = 0;
+                        heroLogoInitial.classList.remove('hidden');
+                        signatureText.classList.remove('visible');
+                        signatureText.classList.add('hidden');
+                        heroContent.classList.remove('visible');
+                        heroContent.classList.add('hidden');
+                    }
+                }
+                
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 
