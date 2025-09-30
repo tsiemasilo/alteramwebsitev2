@@ -398,6 +398,22 @@ section {
     margin-bottom: 50px;
 }
 
+.video-section {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    background: #000;
+}
+
+.video-section video {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 100vh;
+    object-fit: cover;
+}
+
 .about-section {
     background: var(--bg-light);
 }
