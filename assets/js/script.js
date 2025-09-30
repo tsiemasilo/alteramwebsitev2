@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenuRight = document.getElementById('navMenuRight');
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-menu a');
+    const heroLogoInitial = document.getElementById('heroLogoInitial');
+    const signatureText = document.getElementById('signatureText');
+    const heroContent = document.getElementById('heroContent');
+    
+    let scrollStage = 0;
 
     mobileMenuBtn.addEventListener('click', function() {
         navMenuLeft.classList.toggle('active');
@@ -40,6 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+        
+        if (window.scrollY > 50 && scrollStage === 0) {
+            scrollStage = 1;
+            heroLogoInitial.classList.add('hidden');
+            setTimeout(function() {
+                signatureText.classList.add('visible');
+            }, 200);
+        }
+        
+        if (window.scrollY > 300 && scrollStage === 1) {
+            scrollStage = 2;
+            setTimeout(function() {
+                heroContent.classList.add('visible');
+            }, 500);
         }
     });
 
