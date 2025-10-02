@@ -855,7 +855,7 @@ section {
 .interactive-contact-card {
     position: relative;
     width: 100%;
-    min-height: 450px;
+    min-height: 550px;
     background: #e8ecf1;
     border-radius: 30px;
     overflow: hidden;
@@ -888,7 +888,7 @@ section {
 }
 
 .card-logo img {
-    width: 80px;
+    width: 150px;
     height: auto;
 }
 
@@ -963,10 +963,10 @@ section {
 }
 
 .info-box1 {
-    width: 85%;
+    width: 90%;
     height: auto;
     bottom: -100%;
-    left: -85%;
+    left: -90%;
 }
 
 .info-box1::before {
@@ -974,10 +974,10 @@ section {
 }
 
 .info-box2 {
-    width: 70%;
+    width: 90%;
     height: auto;
     bottom: -100%;
-    left: -70%;
+    left: -90%;
     transition-delay: 0.15s;
 }
 
@@ -986,10 +986,10 @@ section {
 }
 
 .info-box3 {
-    width: 55%;
+    width: 90%;
     height: auto;
     bottom: -100%;
-    left: -55%;
+    left: -90%;
     transition-delay: 0.3s;
 }
 
@@ -998,10 +998,10 @@ section {
 }
 
 .info-box4 {
-    width: 40%;
+    width: 90%;
     height: auto;
     bottom: -100%;
-    left: -40%;
+    left: -90%;
     transition-delay: 0.45s;
 }
 
@@ -1054,8 +1054,23 @@ section {
     transform: scale(1.02);
 }
 
-.interactive-contact-card:hover .info-box {
-    bottom: 15px;
+.interactive-contact-card:hover .info-box1 {
+    bottom: 345px;
+    left: 15px;
+}
+
+.interactive-contact-card:hover .info-box2 {
+    bottom: 240px;
+    left: 15px;
+}
+
+.interactive-contact-card:hover .info-box3 {
+    bottom: 135px;
+    left: 15px;
+}
+
+.interactive-contact-card:hover .info-box4 {
+    bottom: 30px;
     left: 15px;
 }
 
@@ -1071,7 +1086,11 @@ section {
 
 @media (max-width: 768px) {
     .interactive-contact-card {
-        min-height: 500px;
+        min-height: 600px;
+    }
+    
+    .card-logo img {
+        width: 120px;
     }
     
     .info-box {
@@ -1100,6 +1119,26 @@ section {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+    
+    .interactive-contact-card:hover .info-box1 {
+        bottom: 380px;
+        left: 15px;
+    }
+
+    .interactive-contact-card:hover .info-box2 {
+        bottom: 265px;
+        left: 15px;
+    }
+
+    .interactive-contact-card:hover .info-box3 {
+        bottom: 150px;
+        left: 15px;
+    }
+
+    .interactive-contact-card:hover .info-box4 {
+        bottom: 35px;
+        left: 15px;
     }
 }
 
