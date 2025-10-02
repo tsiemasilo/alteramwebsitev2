@@ -637,7 +637,7 @@ section {
 .geo-footprint-section {
     background: var(--bg-light);
     padding: 120px 0;
-    min-height: 100vh;
+    min-height: 120vh;
 }
 
 #map-container {
@@ -649,14 +649,14 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 700px;
+    min-height: 1100px;
 }
 
 #south-africa-map {
     width: 100%;
-    max-width: 1000px;
-    height: 700px;
-    min-height: 700px;
+    max-width: 1800px;
+    height: 1100px;
+    min-height: 1100px;
 }
 
 @media (max-width: 768px) {
