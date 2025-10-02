@@ -636,62 +636,33 @@ section {
 
 .geo-footprint-section {
     background: var(--bg-light);
-    padding: 120px 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 100px 0;
 }
 
-.interactive-map-container {
-    margin-top: 40px;
-    padding: 80px 40px;
+#map-container {
+    margin-top: 60px;
+    padding: 40px;
     background: var(--white);
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    flex: 1;
     display: flex;
-    flex-direction: column;
-}
-
-#geo-map-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    min-height: 800px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    flex: 1;
+    align-items: center;
 }
 
-.geo-map-svg {
+#south-africa-map {
     width: 100%;
+    max-width: 800px;
     height: auto;
-    display: block;
-}
-
-.location-marker.active circle {
-    stroke-width: 5px;
-    r: 10;
 }
 
 @media (max-width: 768px) {
     .geo-footprint-section {
         padding: 60px 0;
-        min-height: 90vh;
     }
     
-    .interactive-map-container {
-        padding: 40px 15px;
-    }
-    
-    #geo-map-container {
-        min-height: 600px;
-    }
-    
-    .geo-map-svg text {
-        font-size: 11px !important;
+    #map-container {
+        padding: 20px;
     }
 }
 
