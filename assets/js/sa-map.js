@@ -135,6 +135,9 @@ function initSouthAfricaMap() {
                 .attr('opacity', 0.9);
         });
     
+    const labelsGroup = svg.append('g')
+        .attr('class', 'labels-group');
+    
     const markersGroup = svg.append('g')
         .attr('class', 'markers-group')
         .attr('clip-path', 'url(#map-clip)');
@@ -142,81 +145,167 @@ function initSouthAfricaMap() {
     locations.forEach(location => {
         const [x, y] = projection(location.coordinates);
         
-        const markerGroup = markersGroup.append('g')
-            .attr('class', 'location-marker')
-            .attr('data-location', location.id);
+        let labelX, labelY, lineX, lineY;
+        const margin = 30;
         
-        const markerRadius = location.isHeadOffice ? 10 : 7;
-        markerGroup.append('circle')
+        switch(location.labelPosition) {
+            case 'top':
+                labelX = x;
+                labelY = margin;
+                lineX = x;
+                lineY = padding - 10;
+                break;
+            case 'bottom':
+                labelX = x;
+                labelY = containerHeight - margin;
+                lineX = x;
+                lineY = containerHeight - padding + 10;
+                break;
+            case 'left':
+                labelX = margin + 50;
+                labelY = y;
+                lineX = padding - 10;
+                lineY = y;
+                break;
+            case 'right':
+                labelX = containerWidth - margin - 50;
+                labelY = y;
+                lineX = containerWidth - padding + 10;
+                lineY = y;
+                break;
+            case 'top-left':
+                labelX = margin + 50;
+                labelY = margin + 15;
+                lineX = padding - 10;
+                lineY = padding - 10;
+                break;
+            case 'top-right':
+                labelX = containerWidth - margin - 50;
+                labelY = margin + 15;
+                lineX = containerWidth - padding + 10;
+                lineY = padding - 10;
+                break;
+            case 'bottom-left':
+                labelX = margin + 50;
+                labelY = containerHeight - margin - 15;
+                lineX = padding - 10;
+                lineY = containerHeight - padding + 10;
+                break;
+            case 'bottom-right':
+                labelX = containerWidth - margin - 50;
+                labelY = containerHeight - margin - 15;
+                lineX = containerWidth - padding + 10;
+                lineY = containerHeight - padding + 10;
+                break;
+            default:
+                labelX = x;
+                labelY = y - 30;
+                lineX = x;
+                lineY = y - 10;
+        }
+        
+        labelsGroup.append('line')
+            .attr('x1', x)
+            .attr('y1', y)
+            .attr('x2', lineX)
+            .attr('y2', lineY)
+            .attr('stroke', '#2c3e7a')
+            .attr('stroke-width', 1)
+            .attr('opacity', 0.5);
+        
+        labelsGroup.append('line')
+            .attr('x1', lineX)
+            .attr('y1', lineY)
+            .attr('x2', labelX)
+            .attr('y2', labelY)
+            .attr('stroke', '#2c3e7a')
+            .attr('stroke-width', 1)
+            .attr('opacity', 0.5);
+        
+        const labelGroup = labelsGroup.append('g')
+            .attr('class', 'location-label-box')
+            .attr('transform', `translate(${labelX}, ${labelY})`);
+        
+        const labelText = location.name;
+        const numberText = location.number || '';
+        const subtitleText = location.subtitle || '';
+        
+        const hasNumber = numberText !== '';
+        const hasSubtitle = subtitleText !== '';
+        const lineCount = 1 + (hasNumber ? 1 : 0) + (hasSubtitle ? 1 : 0);
+        
+        const boxHeight = lineCount * 12 + 8;
+        const textWidth = Math.max(
+            labelText.length * 6.5,
+            numberText.toString().length * 6.5,
+            subtitleText.length * 5.5
+        );
+        const boxWidth = Math.max(textWidth + 35, 90);
+        
+        const squareSize = 18;
+        const boxX = -(boxWidth / 2);
+        const boxY = -(boxHeight / 2);
+        
+        labelGroup.append('rect')
+            .attr('x', boxX)
+            .attr('y', boxY)
+            .attr('width', squareSize)
+            .attr('height', boxHeight)
+            .attr('fill', '#f5a623');
+        
+        labelGroup.append('rect')
+            .attr('x', boxX + squareSize)
+            .attr('y', boxY)
+            .attr('width', boxWidth - squareSize)
+            .attr('height', boxHeight)
+            .attr('fill', '#2c3e7a');
+        
+        let textY = boxY + 11;
+        
+        labelGroup.append('text')
+            .attr('x', boxX + boxWidth / 2)
+            .attr('y', textY)
+            .attr('text-anchor', 'middle')
+            .style('font-size', '10px')
+            .style('font-weight', 'bold')
+            .style('fill', '#fff')
+            .style('pointer-events', 'none')
+            .text(labelText);
+        
+        if (hasNumber) {
+            textY += 12;
+            labelGroup.append('text')
+                .attr('x', boxX + boxWidth / 2)
+                .attr('y', textY)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '10px')
+                .style('font-weight', 'bold')
+                .style('fill', '#fff')
+                .style('pointer-events', 'none')
+                .text(numberText);
+        }
+        
+        if (hasSubtitle) {
+            textY += 12;
+            labelGroup.append('text')
+                .attr('x', boxX + boxWidth / 2)
+                .attr('y', textY)
+                .attr('text-anchor', 'middle')
+                .style('font-size', '8px')
+                .style('font-weight', 'normal')
+                .style('fill', '#fff')
+                .style('pointer-events', 'none')
+                .text(subtitleText);
+        }
+        
+        const markerRadius = location.isHeadOffice ? 5 : 3;
+        markersGroup.append('circle')
             .attr('cx', x)
             .attr('cy', y)
             .attr('r', markerRadius)
-            .attr('fill', location.isHeadOffice ? '#f5a623' : '#2c3e7a')
-            .attr('stroke', '#fff')
-            .attr('stroke-width', 2)
-            .style('cursor', 'pointer')
-            .on('mouseover', function() {
-                d3.select(this)
-                    .transition()
-                    .duration(200)
-                    .attr('r', markerRadius * 1.3)
-                    .attr('fill', '#f5a623');
-            })
-            .on('mouseout', function() {
-                d3.select(this)
-                    .transition()
-                    .duration(200)
-                    .attr('r', markerRadius)
-                    .attr('fill', location.isHeadOffice ? '#f5a623' : '#2c3e7a');
-            });
-        
-        let labelX = x;
-        let labelY = y;
-        let textAnchor = 'middle';
-        
-        switch(location.labelPosition) {
-            case 'top': labelY -= 15; break;
-            case 'bottom': labelY += 20; break;
-            case 'left': labelX -= 15; textAnchor = 'end'; break;
-            case 'right': labelX += 15; textAnchor = 'start'; break;
-            case 'top-left': labelX -= 15; labelY -= 15; textAnchor = 'end'; break;
-            case 'top-right': labelX += 15; labelY -= 15; textAnchor = 'start'; break;
-            case 'bottom-left': labelX -= 15; labelY += 20; textAnchor = 'end'; break;
-            case 'bottom-right': labelX += 15; labelY += 20; textAnchor = 'start'; break;
-        }
-        
-        const label = markerGroup.append('text')
-            .attr('x', labelX)
-            .attr('y', labelY)
-            .attr('text-anchor', textAnchor)
-            .attr('class', 'location-label')
-            .style('font-size', location.isHeadOffice ? '13px' : '11px')
-            .style('font-weight', location.isHeadOffice ? 'bold' : 'normal')
-            .style('fill', '#2c3e7a')
-            .style('pointer-events', 'none');
-        
-        label.append('tspan')
-            .text(location.name)
-            .attr('x', labelX)
-            .attr('dy', 0);
-        
-        if (location.subtitle) {
-            label.append('tspan')
-                .text(location.subtitle)
-                .attr('x', labelX)
-                .attr('dy', 12)
-                .style('font-size', '9px')
-                .style('fill', '#f5a623');
-        }
-        
-        if (location.number) {
-            label.append('tspan')
-                .text(`(${location.number})`)
-                .attr('x', labelX)
-                .attr('dy', 12)
-                .style('font-size', '9px')
-                .style('fill', '#666');
-        }
+            .attr('fill', location.isHeadOffice ? '#f5a623' : '#fff')
+            .attr('stroke', '#2c3e7a')
+            .attr('stroke-width', 2);
     });
     
     window.addEventListener('resize', () => {
