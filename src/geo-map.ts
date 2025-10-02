@@ -96,9 +96,17 @@ class SouthAfricaMap {
       .attr('width', this.width)
       .attr('height', this.height);
 
-    this.projection
-      .fitSize([this.width * 0.85, this.height * 0.85], southAfricaGeoJSON as any)
-      .translate([this.width / 2, this.height / 2]);
+    const padding = {
+      left: this.width * 0.075,
+      right: this.width * 0.075,
+      top: this.height * 0.075,
+      bottom: this.height * 0.075
+    };
+    
+    this.projection.fitExtent(
+      [[padding.left, padding.top], [this.width - padding.right, this.height - padding.bottom]], 
+      southAfricaGeoJSON as any
+    );
 
     this.updateMap();
   }

@@ -46,15 +46,15 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
-- October 2, 2025: Fixed Geo-Footprint map initialization issue
-  - **Map Rendering Fix**: Resolved issue where location markers were clustered in center instead of properly distributed across South Africa map
-  - **Root Cause**: D3.js projection was being initialized before the container had proper dimensions (clientWidth = 0)
+- October 2, 2025: Fixed Geo-Footprint map D3.js projection bug
+  - **Map Rendering Fix**: Resolved critical issue where location markers were clustered in center instead of properly distributed across South Africa map
+  - **Root Cause**: D3.js projection was incorrectly configured - `.fitSize()` calculates optimal scale AND translation, but we were then calling `.translate()` which overrode the calculated translation, breaking the projection
   - **Solution Implemented**:
-    - Added validation to ensure container has width > 0 before initializing map
-    - Implemented retry mechanism with 100ms timeout for delayed container readiness
-    - Added IntersectionObserver for lazy initialization when section becomes visible
+    - Replaced `.fitSize().translate()` with `.fitExtent()` which properly fits the map with padding
+    - Added initialization safeguards: container dimension validation, retry mechanism (100ms timeout), IntersectionObserver for lazy loading
     - Prevents duplicate map initialization with `mapInitialized` flag
-  - **Result**: Map now correctly displays South Africa outline with 19 location markers properly positioned across the country
+    - Added cache-busting parameter `?v=2` to force browser to load updated JavaScript
+  - **Result**: Map now correctly displays South Africa outline with 19 location markers properly positioned across the country using accurate geographic coordinates
 - October 2, 2025: Successfully configured GitHub import for Replit environment
   - **Node.js Dependencies**: Installed TypeScript, D3.js, and @types/d3 via npm
   - **TypeScript Compilation**: Compiled src/geo-map.ts to assets/js/geo-map.js using `npm run build:map`
