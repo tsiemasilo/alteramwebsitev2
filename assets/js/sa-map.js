@@ -43,6 +43,15 @@ function initSouthAfricaMap() {
        .attr('viewBox', `0 0 ${containerWidth} ${containerHeight}`)
        .attr('preserveAspectRatio', 'xMidYMid meet');
     
+    const defs = svg.append('defs');
+    const clipPath = defs.append('clipPath')
+        .attr('id', 'map-clip');
+    clipPath.append('rect')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', containerWidth)
+        .attr('height', containerHeight);
+    
     const projection = d3.geoMercator();
     
     const padding = 80;
@@ -53,7 +62,9 @@ function initSouthAfricaMap() {
     
     const path = d3.geoPath().projection(projection);
     
-    const mapGroup = svg.append('g').attr('class', 'map-group');
+    const mapGroup = svg.append('g')
+        .attr('class', 'map-group')
+        .attr('clip-path', 'url(#map-clip)');
     
     mapGroup.selectAll('path.province')
         .data(southAfricaData.features)
@@ -80,7 +91,9 @@ function initSouthAfricaMap() {
                 .attr('opacity', 0.9);
         });
     
-    const markersGroup = svg.append('g').attr('class', 'markers-group');
+    const markersGroup = svg.append('g')
+        .attr('class', 'markers-group')
+        .attr('clip-path', 'url(#map-clip)');
     
     locations.forEach(location => {
         const [x, y] = projection(location.coordinates);
