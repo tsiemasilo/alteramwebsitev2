@@ -913,12 +913,12 @@ section {
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     letter-spacing: 0.5px;
-    animation: fadeInOut 2s ease-in-out infinite;
+    animation: bounceUpDown 1.5s ease-in-out infinite;
 }
 
 .hover-indicator .fa-mouse-pointer {
     font-size: 1.3rem;
-    animation: moveLeftRight 1.5s ease-in-out infinite;
+    animation: bounceUpDown 1.5s ease-in-out infinite;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
 }
 
@@ -928,21 +928,12 @@ section {
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
 }
 
-@keyframes moveLeftRight {
+@keyframes bounceUpDown {
     0%, 100% {
-        transform: translateX(0);
+        transform: translateY(0);
     }
     50% {
-        transform: translateX(10px);
-    }
-}
-
-@keyframes fadeInOut {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
+        transform: translateY(-10px);
     }
 }
 
