@@ -39,13 +39,6 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
-- October 2, 2025: Updated clients section with 3D rotating card carousel
-  - Replaced horizontal sliding animation with 3D rotating card effect
-  - Client logos now displayed in rotating cards arranged in a circle
-  - 19 client cards with colorful gradient backgrounds
-  - Smooth rotation animation with pause-on-hover functionality
-  - Cards feature depth perception with translateZ transforms
-  - Interactive hover effects that bring cards forward
 - October 2, 2025: GitHub project imported and configured for Replit environment
   - Verified Python 3.11 module already installed
   - Confirmed workflow running successfully on port 5000
