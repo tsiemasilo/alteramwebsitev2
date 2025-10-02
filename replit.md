@@ -5,10 +5,14 @@ Modern, responsive redesign of the Alteram website featuring all requested secti
 
 ## Project Structure
 - `index.html` - Main website file
-- `assets/css/styles.css` - Stylesheet with modern responsive design
+- `src/geo-map.ts` - TypeScript source for D3.js map visualization
+- `assets/js/geo-map.js` - Compiled JavaScript for interactive map
 - `assets/js/script.js` - JavaScript for interactivity and animations
+- `assets/css/styles.css` - Stylesheet with modern responsive design
 - `assets/images/` - Logo and image assets
 - `server.py` - Python HTTP server for development
+- `package.json` - Node.js dependencies (D3.js, TypeScript)
+- `tsconfig.json` - TypeScript compiler configuration
 
 ## Sections
 1. **Home** - Hero section with tagline "Your Vision DELIVERED"
@@ -22,7 +26,9 @@ Modern, responsive redesign of the Alteram website featuring all requested secti
 ## Technology Stack
 - HTML5
 - CSS3 (with modern animations and responsive design)
+- TypeScript + D3.js (for interactive map visualization)
 - Vanilla JavaScript
+- Node.js 20 (for TypeScript compilation)
 - Python 3.11 (development server)
 - Font Awesome icons
 
@@ -40,17 +46,20 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
-- October 2, 2025: Redesigned Geo-Footprint section (Page 5) with interactive map
-  - Implemented interactive South Africa map with 19 location markers
-  - Locations include: North West (42), Polokwane, Limpopo (52), Zeerust, Mbombela, Mpumalanga (48), Kimberley, Centurion, Midrand (HEAD OFFICE), Gauteng (53), Northern Cape (53), Margate, KwaZulu-Natal (81), Western Cape (23), Cape Town, East London, Bloemfontein, Free State (26), Eastern Cape (72)
-  - Added hover effects with color transitions (navy blue to orange)
-  - Implemented click-to-activate functionality for location markers
-  - Positioned labels around map with connecting lines using 8 directional classes
-  - Animated marker dots with pulsing effect to draw attention
-  - HEAD OFFICE (Midrand) has distinctive larger marker
+- October 2, 2025: Upgraded Geo-Footprint section (Page 5) to programmatic TypeScript + D3.js implementation
+  - **Technology Upgrade**: Replaced static image-based map with programmatically-drawn SVG map using TypeScript and D3.js
+  - **Advanced Visualization**: Implemented D3.js geoMercator projection with embedded GeoJSON data for South Africa outline
+  - **19 Interactive Locations**: All markers positioned using geographic coordinates with D3 projection
+    - Locations: North West (42), Polokwane, Limpopo (52), Zeerust, Mbombela, Mpumalanga (48), Kimberley, Centurion, Midrand (HEAD OFFICE), Gauteng (53), Northern Cape (53), Margate, KwaZulu-Natal (81), Western Cape (23), Cape Town, East London, Bloemfontein, Free State (26), Eastern Cape (72)
+  - **Interactive Features**: Hover effects (navy to orange transitions), click-to-activate functionality, smooth D3 transitions
+  - **Smart Label Positioning**: 8-directional label placement with connecting lines to prevent overlap
+  - **Responsive SVG**: Automatically scales to container with resize event handling
+  - **Build System**: TypeScript compilation with `npm run build:map` compiles src/geo-map.ts to assets/js/geo-map.js
+  - **Browser Compatibility**: CDN-based D3 import for browser ESM support without import maps
+  - **TypeScript Config**: Configured with noImplicitAny: false for cleaner compilation
+  - HEAD OFFICE (Midrand) has distinctive larger marker for prominence
   - Scroll-triggered animations with staggered timing for visual appeal
   - Fully responsive design optimized for desktop, tablet, and mobile devices
-  - Used south-africa-map.png as base map image
 - October 2, 2025: GitHub import successfully configured for Replit environment
   - Verified Python 3.11 module installed and functional
   - Confirmed workflow "Website" running successfully on port 5000
