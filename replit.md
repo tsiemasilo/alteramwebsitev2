@@ -46,6 +46,23 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
+- October 2, 2025: Finalized Geo-Footprint map with embedded GeoJSON data
+  - **GeoJSON Embedding**: Successfully embedded 154KB GeoJSON data directly into sa-map.js to eliminate CORS issues
+  - **Data Integration**: Replaced external fetch() calls with inline GeoJSON data for reliable map rendering
+  - **Province Validation**: Confirmed all 9 provinces present: Northern Cape, KwaZulu-Natal, Free State, Eastern Cape, Limpopo, North West, Mpumalanga, Western Cape, Gauteng
+  - **Map Initialization**: D3.js geoMercator projection with fitExtent() properly scales South Africa map with 19 location markers
+  - **Loading Screen Optimization**: Reduced loading delay from 3.5s to 500ms for faster content display
+  - **File Structure**: sa-map.js contains embedded GeoJSON, location markers array, and D3 rendering code
+  - **Browser Testing**: All resources loading successfully (HTTP 200), no JavaScript errors, map ready for user interaction
+  - **Result**: Map fully functional with accurate South Africa province boundaries and all company locations properly displayed
+- October 2, 2025: Fixed South Africa map outline with accurate province boundaries
+  - **GeoJSON Update**: Replaced fabricated hand-drawn province coordinates with authentic GeoJSON from authoritative source
+  - **Data Source**: Using community-vetted GeoJSON from MeganBeckett's gist with accurate South Africa province boundaries
+  - **Province Count**: All 9 provinces properly rendered: Northern Cape, Eastern Cape, Western Cape, Free State, KwaZulu-Natal, Gauteng, Mpumalanga, Limpopo, North West
+  - **Projection Fix**: Updated D3.js projection to use `.fitExtent()` for automatic scale/translation calculation (removed hard-coded values)
+  - **Map Shape**: Now displays correct South Africa outline matching the reference image with proper province borders
+  - **Interactive Features**: Maintained all 19 location markers with hover effects and labels
+  - **Result**: Map outline now accurately represents South Africa's geographic shape with all provincial boundaries
 - October 2, 2025: Expanded Geo-Footprint section (Page 5) for full map visibility
   - **Map Display Fix**: Increased map container and section size to ensure complete map visibility without cutoff
   - **Section Height**: Set geo-footprint section to `min-height: 100vh` and increased padding from 100px to 120px
