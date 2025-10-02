@@ -563,75 +563,80 @@ section {
     overflow: hidden;
 }
 
-.logo-slider {
+.carousel-wrapper {
     width: 100%;
-    overflow: hidden;
-    padding: 40px 0;
+    height: 500px;
     position: relative;
-}
-
-.logo-slider::before,
-.logo-slider::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.logo-slider::before {
-    left: 0;
-    background: linear-gradient(to right, var(--white), transparent);
-}
-
-.logo-slider::after {
-    right: 0;
-    background: linear-gradient(to left, var(--white), transparent);
-}
-
-.logo-track {
-    display: flex;
-    gap: 60px;
-    animation: scroll 40s linear infinite;
-    width: max-content;
-}
-
-.logo-track:hover {
-    animation-play-state: paused;
-}
-
-.logo-item {
-    flex-shrink: 0;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
-    padding: 0 20px;
+    overflow: visible;
+    padding: 80px 0;
 }
 
-.logo-item img {
-    max-height: 80px;
-    max-width: 200px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale(0);
+.carousel-inner {
+    --w: 180px;
+    --h: 250px;
+    --translateZ: calc((var(--w) + var(--h)) + 50px);
+    --rotateX: -12deg;
+    --perspective: 1200px;
+    position: absolute;
+    width: var(--w);
+    height: var(--h);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(var(--perspective));
+    transform-style: preserve-3d;
+    animation: rotating 25s linear infinite;
+}
+
+.carousel-inner:hover {
+    animation-play-state: paused;
+}
+
+@keyframes rotating {
+    from {
+        transform: translate(-50%, -50%) perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
+    }
+    to {
+        transform: translate(-50%, -50%) perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn);
+    }
+}
+
+.client-card {
+    position: absolute;
+    border: 2px solid rgba(var(--color-card), 0.8);
+    border-radius: 16px;
+    overflow: hidden;
+    inset: 0;
+    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
+    background: #fff radial-gradient(
+        circle,
+        rgba(var(--color-card), 0.1) 0%,
+        rgba(var(--color-card), 0.25) 80%,
+        rgba(var(--color-card), 0.4) 100%
+    );
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
     transition: all 0.3s ease;
 }
 
-.logo-item:hover img {
-    transform: scale(1.1);
+.client-card:hover {
+    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(calc(var(--translateZ) + 30px));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+.client-card img {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .geo-footprint-section {
