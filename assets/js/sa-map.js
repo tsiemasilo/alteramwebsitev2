@@ -45,7 +45,7 @@ function initSouthAfricaMap() {
     
     const projection = d3.geoMercator();
     
-    const padding = 40;
+    const padding = 80;
     projection.fitExtent(
         [[padding, padding], [containerWidth - padding, containerHeight - padding]],
         southAfricaData
