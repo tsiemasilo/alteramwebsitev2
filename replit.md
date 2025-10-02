@@ -14,9 +14,10 @@ Modern, responsive redesign of the Alteram website featuring all requested secti
 1. **Home** - Hero section with tagline "Your Vision DELIVERED"
 2. **About Us** - Company overview and core values (Customer Focused, Quality, Innovation, People Centric)
 3. **Services** - ICT services including Managed Services, CRM Solutions, Data Analytics, SAP Competency Centre
-4. **Geo-Footprint** - Coverage across South Africa regions
-5. **Vacancies** - Career opportunities and CV submission form
-6. **Contact Us** - Contact information and inquiry form
+4. **Our Clients** - Scrolling showcase of client logos (past and present)
+5. **Geo-Footprint** - Interactive map of South Africa with 19 location markers showing regional presence
+6. **Vacancies** - Career opportunities and CV submission form
+7. **Contact Us** - Contact information and inquiry form with interactive card
 
 ## Technology Stack
 - HTML5
@@ -39,6 +40,17 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
+- October 2, 2025: Redesigned Geo-Footprint section (Page 5) with interactive map
+  - Implemented interactive South Africa map with 19 location markers
+  - Locations include: North West (42), Polokwane, Limpopo (52), Zeerust, Mbombela, Mpumalanga (48), Kimberley, Centurion, Midrand (HEAD OFFICE), Gauteng (53), Northern Cape (53), Margate, KwaZulu-Natal (81), Western Cape (23), Cape Town, East London, Bloemfontein, Free State (26), Eastern Cape (72)
+  - Added hover effects with color transitions (navy blue to orange)
+  - Implemented click-to-activate functionality for location markers
+  - Positioned labels around map with connecting lines using 8 directional classes
+  - Animated marker dots with pulsing effect to draw attention
+  - HEAD OFFICE (Midrand) has distinctive larger marker
+  - Scroll-triggered animations with staggered timing for visual appeal
+  - Fully responsive design optimized for desktop, tablet, and mobile devices
+  - Used south-africa-map.png as base map image
 - October 2, 2025: GitHub import successfully configured for Replit environment
   - Verified Python 3.11 module installed and functional
   - Confirmed workflow "Website" running successfully on port 5000
