@@ -916,8 +916,8 @@ section {
 }
 
 .hover-indicator .fa-mouse-pointer {
-    font-size: 1.8rem;
-    animation: pointPulse 1.5s ease-in-out infinite;
+    font-size: 1.3rem;
+    animation: moveLeftRight 1.5s ease-in-out infinite;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
 }
 
@@ -927,12 +927,12 @@ section {
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
 }
 
-@keyframes pointPulse {
+@keyframes moveLeftRight {
     0%, 100% {
-        transform: scale(1) translateY(0);
+        transform: translateX(0);
     }
     50% {
-        transform: scale(1.2) translateY(-3px);
+        transform: translateX(10px);
     }
 }
 
@@ -1160,7 +1160,7 @@ section {
     }
     
     .hover-indicator .fa-mouse-pointer {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
     }
     
     .hover-indicator .hover-arrow {
