@@ -46,6 +46,13 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
+- October 2, 2025: Expanded Geo-Footprint section (Page 5) for full map visibility
+  - **Map Display Fix**: Increased map container and section size to ensure complete map visibility without cutoff
+  - **Section Height**: Set geo-footprint section to `min-height: 100vh` and increased padding from 100px to 120px
+  - **Map Container**: Added `min-height: 700px` to ensure adequate space for the full map display
+  - **SVG Sizing**: Increased map dimensions from 800px max-width to 1000px, with explicit height of 700px (previously auto)
+  - **Mobile Optimization**: Updated responsive styles with 500px height for mobile devices
+  - **Result**: Page 5 now displays the complete South Africa map without any cutoff, with all 19 location markers fully visible
 - October 2, 2025: GitHub Repository Import - Successfully configured for Replit environment
   - **Import Source**: Fresh GitHub clone imported into Replit
   - **Environment Verification**: Confirmed Python 3.12 and Node.js 20 installed and operational
