@@ -913,6 +913,7 @@ section {
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     letter-spacing: 0.5px;
+    animation: fadeInOut 2s ease-in-out infinite;
 }
 
 .hover-indicator .fa-mouse-pointer {
@@ -936,12 +937,12 @@ section {
     }
 }
 
-@keyframes bounceArrow {
+@keyframes fadeInOut {
     0%, 100% {
-        transform: translateY(0);
+        opacity: 1;
     }
     50% {
-        transform: translateY(8px);
+        opacity: 0.5;
     }
 }
 
