@@ -230,28 +230,235 @@
         <div class="container">
             <span class="page-number">Page 5</span>
             <h2 class="section-title">Geo-Footprint</h2>
-            <p class="section-subtitle">Serving clients across South Africa and beyond</p>
-            <div class="geo-content">
-                <div class="map-container">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Our Presence</h3>
-                    <p>With operations throughout South Africa, we deliver our services to clients across multiple provinces and regions, serving both public and private sector organizations.</p>
+            <p class="section-subtitle">Our nationwide presence serving clients across South Africa</p>
+            
+            <div class="interactive-map-container">
+                <div class="map-wrapper">
+                    <!-- Map Image -->
+                    <div class="map-image">
+                        <img src="assets/images/south-africa-map.png" alt="South Africa Map">
+                    </div>
+                    
+                    <!-- Location Markers -->
+                    <!-- North West -->
+                    <div class="location-marker" data-location="north-west" style="top: 18%; left: 20%;">
+                        <div class="location-label label-top-left">
+                            <div class="label-box">
+                                <span class="location-number">42</span>
+                                <span class="location-name">North West</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Polokwane -->
+                    <div class="location-marker" data-location="polokwane" style="top: 12%; left: 55%;">
+                        <div class="location-label label-top">
+                            <div class="label-box">
+                                <span class="location-name">Polokwane</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Limpopo -->
+                    <div class="location-marker" data-location="limpopo" style="top: 10%; right: 10%;">
+                        <div class="location-label label-top-right">
+                            <div class="label-box">
+                                <span class="location-name">Limpopo</span>
+                                <span class="location-number">52</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Zeerust -->
+                    <div class="location-marker" data-location="zeerust" style="top: 25%; left: 15%;">
+                        <div class="location-label label-left">
+                            <div class="label-box">
+                                <span class="location-name">Zeerust</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Mbombela -->
+                    <div class="location-marker" data-location="mbombela" style="top: 22%; right: 15%;">
+                        <div class="location-label label-top-right">
+                            <div class="label-box">
+                                <span class="location-name">Mbombela</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Mpumalanga -->
+                    <div class="location-marker" data-location="mpumalanga" style="top: 28%; right: 8%;">
+                        <div class="location-label label-right">
+                            <div class="label-box">
+                                <span class="location-name">Mpumalanga</span>
+                                <span class="location-number">48</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Kimberley -->
+                    <div class="location-marker" data-location="kimberley" style="top: 48%; left: 12%;">
+                        <div class="location-label label-left">
+                            <div class="label-box">
+                                <span class="location-name">Kimberley</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Centurion -->
+                    <div class="location-marker" data-location="centurion" style="top: 32%; left: 48%;">
+                        <div class="location-label label-top-right">
+                            <div class="label-box">
+                                <span class="location-name">Centurion</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Midrand (HEAD OFFICE) -->
+                    <div class="location-marker head-office" data-location="midrand" style="top: 34%; right: 35%;">
+                        <div class="location-label label-right">
+                            <div class="label-box">
+                                <span class="location-name">Midrand</span>
+                                <span class="location-subtitle">HEAD OFFICE</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Gauteng -->
+                    <div class="location-marker" data-location="gauteng" style="top: 36%; right: 25%;">
+                        <div class="location-label label-right">
+                            <div class="label-box">
+                                <span class="location-name">Gauteng</span>
+                                <span class="location-number">53</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Northern Cape -->
+                    <div class="location-marker" data-location="northern-cape" style="top: 42%; left: 8%;">
+                        <div class="location-label label-left">
+                            <div class="label-box">
+                                <span class="location-name">Northern Cape</span>
+                                <span class="location-number">53</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Margate -->
+                    <div class="location-marker" data-location="margate" style="top: 62%; right: 18%;">
+                        <div class="location-label label-right">
+                            <div class="label-box">
+                                <span class="location-name">Margate</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- KwaZulu-Natal -->
+                    <div class="location-marker" data-location="kwazulu-natal" style="top: 50%; right: 12%;">
+                        <div class="location-label label-right">
+                            <div class="label-box">
+                                <span class="location-name">KwaZulu-Natal</span>
+                                <span class="location-number">81</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Western Cape -->
+                    <div class="location-marker" data-location="western-cape" style="top: 78%; left: 5%;">
+                        <div class="location-label label-bottom-left">
+                            <div class="label-box">
+                                <span class="location-name">Western Cape</span>
+                                <span class="location-number">23</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Cape Town -->
+                    <div class="location-marker" data-location="cape-town" style="bottom: 10%; left: 12%;">
+                        <div class="location-label label-bottom">
+                            <div class="label-box">
+                                <span class="location-name">Cape Town</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- East London -->
+                    <div class="location-marker" data-location="east-london" style="bottom: 18%; right: 28%;">
+                        <div class="location-label label-bottom-right">
+                            <div class="label-box">
+                                <span class="location-name">East London</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Bloemfontein -->
+                    <div class="location-marker" data-location="bloemfontein" style="bottom: 28%; left: 35%;">
+                        <div class="location-label label-bottom">
+                            <div class="label-box">
+                                <span class="location-name">Bloemfontein</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Free State -->
+                    <div class="location-marker" data-location="free-state" style="bottom: 32%; left: 42%;">
+                        <div class="location-label label-bottom">
+                            <div class="label-box">
+                                <span class="location-name">Free State</span>
+                                <span class="location-number">26</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
+                    
+                    <!-- Eastern Cape -->
+                    <div class="location-marker" data-location="eastern-cape" style="bottom: 22%; left: 45%;">
+                        <div class="location-label label-bottom">
+                            <div class="label-box">
+                                <span class="location-name">Eastern Cape</span>
+                                <span class="location-number">72</span>
+                            </div>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="marker-dot"></div>
+                    </div>
                 </div>
-                <div class="coverage-list">
-                    <h3>Key Regions</h3>
-                    <ul>
-                        <li><i class="fas fa-map-pin"></i> Gauteng</li>
-                        <li><i class="fas fa-map-pin"></i> Western Cape</li>
-                        <li><i class="fas fa-map-pin"></i> Eastern Cape</li>
-                        <li><i class="fas fa-map-pin"></i> KwaZulu-Natal</li>
-                        <li><i class="fas fa-map-pin"></i> Free State</li>
-                        <li><i class="fas fa-map-pin"></i> Northern Cape</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="clients-section">
-                <h3>Trusted by Leading Organizations</h3>
-                <p>We've partnered with numerous government departments, municipalities, and corporate clients, delivering innovative ICT solutions that drive success.</p>
             </div>
         </div>
     </section>

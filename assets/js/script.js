@@ -165,4 +165,71 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    const locationMarkers = document.querySelectorAll('.location-marker');
+    let activeMarker = null;
+    
+    if (locationMarkers.length > 0) {
+        const mapObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'scale(1)';
+                    }, index * 50);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        locationMarkers.forEach((marker, index) => {
+            marker.style.opacity = '0';
+            marker.style.transform = 'scale(0)';
+            marker.style.transition = `opacity 0.5s ease ${index * 0.05}s, transform 0.5s ease ${index * 0.05}s`;
+            mapObserver.observe(marker);
+            
+            marker.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                if (activeMarker && activeMarker !== this) {
+                    activeMarker.classList.remove('active');
+                }
+                
+                if (activeMarker === this) {
+                    this.classList.remove('active');
+                    activeMarker = null;
+                } else {
+                    this.classList.add('active');
+                    activeMarker = this;
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (activeMarker && !e.target.closest('.location-marker')) {
+                activeMarker.classList.remove('active');
+                activeMarker = null;
+            }
+        });
+
+        const mapWrapper = document.querySelector('.map-wrapper');
+        if (mapWrapper) {
+            let isDown = false;
+            let startX, startY, scrollLeft, scrollTop;
+
+            mapWrapper.addEventListener('touchstart', function(e) {
+                const marker = e.target.closest('.location-marker');
+                if (marker) {
+                    const location = marker.dataset.location;
+                    const locationName = marker.querySelector('.location-name').textContent;
+                    const locationNumber = marker.querySelector('.location-number');
+                    const numberText = locationNumber ? ` (${locationNumber.textContent})` : '';
+                    
+                    console.log(`Location: ${locationName}${numberText}`);
+                }
+            });
+        }
+    }
 });
