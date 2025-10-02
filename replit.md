@@ -39,6 +39,12 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
+- October 2, 2025: Added hover indicator to Contact Us section
+  - Added animated "Hover Over Me" text with hand pointer icon below Alteram logo
+  - Included bouncing arrow animation to guide users
+  - Indicator fades out smoothly when contact card is hovered
+  - Fully responsive design for mobile devices
+  - Icons animate with pulse and bounce effects to attract attention
 - October 2, 2025: GitHub project imported and configured for Replit environment
   - Verified Python 3.11 module already installed
   - Confirmed workflow running successfully on port 5000

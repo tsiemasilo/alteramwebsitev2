@@ -892,6 +892,59 @@ section {
     height: auto;
 }
 
+.hover-indicator {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    z-index: 10;
+    opacity: 1;
+    transition: all 0.8s ease-in-out;
+    pointer-events: none;
+}
+
+.hover-indicator span {
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
+}
+
+.hover-indicator .fa-hand-pointer {
+    font-size: 1.8rem;
+    animation: pointPulse 1.5s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.hover-indicator .hover-arrow {
+    font-size: 1.2rem;
+    animation: bounceArrow 1.5s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+@keyframes pointPulse {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.2) translateY(-3px);
+    }
+}
+
+@keyframes bounceArrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(8px);
+    }
+}
+
 .card-heading {
     position: absolute;
     top: 20px;
@@ -1084,6 +1137,11 @@ section {
     opacity: 1;
 }
 
+.interactive-contact-card:hover .hover-indicator {
+    opacity: 0;
+    transform: translate(50%, 100px);
+}
+
 @media (max-width: 768px) {
     .interactive-contact-card {
         min-height: 600px;
@@ -1091,6 +1149,22 @@ section {
     
     .card-logo img {
         width: 120px;
+    }
+    
+    .hover-indicator {
+        transform: translate(50%, 70px);
+    }
+    
+    .hover-indicator span {
+        font-size: 0.9rem;
+    }
+    
+    .hover-indicator .fa-hand-pointer {
+        font-size: 1.5rem;
+    }
+    
+    .hover-indicator .hover-arrow {
+        font-size: 1rem;
     }
     
     .info-box {
