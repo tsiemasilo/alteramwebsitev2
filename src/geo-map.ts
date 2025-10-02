@@ -90,7 +90,7 @@ class SouthAfricaMap {
     if (!container) return;
 
     this.width = container.clientWidth;
-    this.height = Math.min(this.width * 0.8, 700);
+    this.height = Math.min(this.width * 0.9, 1200);
 
     this.svg
       .attr('width', this.width)
