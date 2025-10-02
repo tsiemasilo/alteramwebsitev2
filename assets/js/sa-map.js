@@ -142,67 +142,86 @@ function initSouthAfricaMap() {
         .attr('class', 'markers-group')
         .attr('clip-path', 'url(#map-clip)');
     
+    const positionGroups = {
+        'top': [],
+        'bottom': [],
+        'left': [],
+        'right': [],
+        'top-left': [],
+        'top-right': [],
+        'bottom-left': [],
+        'bottom-right': []
+    };
+    
     locations.forEach(location => {
         const [x, y] = projection(location.coordinates);
+        positionGroups[location.labelPosition].push({ location, x, y });
+    });
+    
+    Object.keys(positionGroups).forEach(position => {
+        const group = positionGroups[position];
+        const count = group.length;
         
-        let labelX, labelY, lineX, lineY;
-        const margin = 30;
-        
-        switch(location.labelPosition) {
-            case 'top':
+        group.forEach((item, index) => {
+            const { location, x, y } = item;
+            let labelX, labelY, lineX, lineY;
+            const margin = 25;
+            const labelSpacing = 120;
+            
+            if (position === 'top') {
+                const totalWidth = (count - 1) * labelSpacing;
+                const startX = (containerWidth - totalWidth) / 2;
+                labelX = startX + (index * labelSpacing);
+                labelY = margin;
+                lineX = labelX;
+                lineY = padding - 10;
+            } else if (position === 'bottom') {
+                const totalWidth = (count - 1) * labelSpacing;
+                const startX = (containerWidth - totalWidth) / 2;
+                labelX = startX + (index * labelSpacing);
+                labelY = containerHeight - margin;
+                lineX = labelX;
+                lineY = containerHeight - padding + 10;
+            } else if (position === 'left') {
+                const totalHeight = (count - 1) * labelSpacing;
+                const startY = (containerHeight - totalHeight) / 2;
+                labelX = margin + 60;
+                labelY = startY + (index * labelSpacing);
+                lineX = padding - 10;
+                lineY = labelY;
+            } else if (position === 'right') {
+                const totalHeight = (count - 1) * labelSpacing;
+                const startY = (containerHeight - totalHeight) / 2;
+                labelX = containerWidth - margin - 60;
+                labelY = startY + (index * labelSpacing);
+                lineX = containerWidth - padding + 10;
+                lineY = labelY;
+            } else if (position === 'top-left') {
+                labelX = margin + 60;
+                labelY = margin + 20 + (index * 50);
+                lineX = padding - 10;
+                lineY = padding - 10 + (index * 20);
+            } else if (position === 'top-right') {
+                labelX = containerWidth - margin - 60;
+                labelY = margin + 20 + (index * 50);
+                lineX = containerWidth - padding + 10;
+                lineY = padding - 10 + (index * 20);
+            } else if (position === 'bottom-left') {
+                labelX = margin + 60;
+                labelY = containerHeight - margin - 20 - (index * 50);
+                lineX = padding - 10;
+                lineY = containerHeight - padding + 10 - (index * 20);
+            } else if (position === 'bottom-right') {
+                labelX = containerWidth - margin - 60;
+                labelY = containerHeight - margin - 20 - (index * 50);
+                lineX = containerWidth - padding + 10;
+                lineY = containerHeight - padding + 10 - (index * 20);
+            } else {
                 labelX = x;
                 labelY = margin;
                 lineX = x;
                 lineY = padding - 10;
-                break;
-            case 'bottom':
-                labelX = x;
-                labelY = containerHeight - margin;
-                lineX = x;
-                lineY = containerHeight - padding + 10;
-                break;
-            case 'left':
-                labelX = margin + 50;
-                labelY = y;
-                lineX = padding - 10;
-                lineY = y;
-                break;
-            case 'right':
-                labelX = containerWidth - margin - 50;
-                labelY = y;
-                lineX = containerWidth - padding + 10;
-                lineY = y;
-                break;
-            case 'top-left':
-                labelX = margin + 50;
-                labelY = margin + 15;
-                lineX = padding - 10;
-                lineY = padding - 10;
-                break;
-            case 'top-right':
-                labelX = containerWidth - margin - 50;
-                labelY = margin + 15;
-                lineX = containerWidth - padding + 10;
-                lineY = padding - 10;
-                break;
-            case 'bottom-left':
-                labelX = margin + 50;
-                labelY = containerHeight - margin - 15;
-                lineX = padding - 10;
-                lineY = containerHeight - padding + 10;
-                break;
-            case 'bottom-right':
-                labelX = containerWidth - margin - 50;
-                labelY = containerHeight - margin - 15;
-                lineX = containerWidth - padding + 10;
-                lineY = containerHeight - padding + 10;
-                break;
-            default:
-                labelX = x;
-                labelY = y - 30;
-                lineX = x;
-                lineY = y - 10;
-        }
+            }
         
         labelsGroup.append('line')
             .attr('x1', x)
@@ -306,6 +325,7 @@ function initSouthAfricaMap() {
             .attr('fill', location.isHeadOffice ? '#f5a623' : '#fff')
             .attr('stroke', '#2c3e7a')
             .attr('stroke-width', 2);
+        });
     });
     
     window.addEventListener('resize', () => {
