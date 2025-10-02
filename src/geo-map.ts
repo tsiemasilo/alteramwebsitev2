@@ -245,9 +245,38 @@ class SouthAfricaMap {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+let mapInitialized = false;
+
+function initializeMap() {
+  if (mapInitialized) return true;
+  
   const mapContainer = document.getElementById('geo-map-container');
-  if (mapContainer) {
+  if (mapContainer && mapContainer.clientWidth > 0) {
     new SouthAfricaMap('geo-map-container');
+    mapInitialized = true;
+    return true;
+  }
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (!initializeMap()) {
+    setTimeout(() => {
+      if (!initializeMap()) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !mapInitialized) {
+              initializeMap();
+              observer.disconnect();
+            }
+          });
+        });
+        
+        const mapContainer = document.getElementById('geo-map-container');
+        if (mapContainer) {
+          observer.observe(mapContainer);
+        }
+      }
+    }, 100);
   }
 });
