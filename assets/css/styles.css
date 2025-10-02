@@ -650,15 +650,15 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 1100px;
+    min-height: 900px;
     overflow: hidden;
 }
 
 #south-africa-map {
     width: 100%;
     max-width: 1800px;
-    height: 1100px;
-    min-height: 1100px;
+    height: 900px;
+    min-height: 900px;
 }
 
 @media (max-width: 768px) {
