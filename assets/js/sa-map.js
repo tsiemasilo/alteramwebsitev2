@@ -24,6 +24,48 @@ const locations = [
     { id: 'eastern-cape', name: 'Eastern Cape', number: 72, coordinates: [26.5, -32.3], labelPosition: 'bottom' }
 ];
 
+function filterRemoteIslands(geojson) {
+    const LATITUDE_THRESHOLD = -40;
+    
+    const filteredFeatures = geojson.features.map(feature => {
+        if (feature.geometry.type === 'MultiPolygon') {
+            const filteredPolygons = feature.geometry.coordinates.filter(polygon => {
+                const allCoords = polygon[0];
+                let sumLat = 0;
+                let count = 0;
+                
+                allCoords.forEach(coord => {
+                    sumLat += coord[1];
+                    count++;
+                });
+                
+                const centroidLat = sumLat / count;
+                const keepPolygon = centroidLat > LATITUDE_THRESHOLD;
+                
+                if (!keepPolygon) {
+                    console.log(`Filtered remote island polygon from ${feature.properties.name} (centroid lat: ${centroidLat.toFixed(2)})`);
+                }
+                
+                return keepPolygon;
+            });
+            
+            return {
+                ...feature,
+                geometry: {
+                    ...feature.geometry,
+                    coordinates: filteredPolygons
+                }
+            };
+        }
+        return feature;
+    });
+    
+    return {
+        ...geojson,
+        features: filteredFeatures
+    };
+}
+
 function initSouthAfricaMap() {
     const container = document.getElementById('map-container');
     const svg = d3.select('#south-africa-map');
@@ -34,6 +76,8 @@ function initSouthAfricaMap() {
     }
     
     svg.selectAll('*').remove();
+    
+    const filteredData = filterRemoteIslands(southAfricaData);
     
     const containerWidth = container.clientWidth || 960;
     const containerHeight = container.clientHeight || 700;
@@ -57,7 +101,7 @@ function initSouthAfricaMap() {
     const padding = 80;
     projection.fitExtent(
         [[padding, padding], [containerWidth - padding, containerHeight - padding]],
-        southAfricaData
+        filteredData
     );
     
     const path = d3.geoPath().projection(projection);
@@ -67,7 +111,7 @@ function initSouthAfricaMap() {
         .attr('clip-path', 'url(#map-clip)');
     
     mapGroup.selectAll('path.province')
-        .data(southAfricaData.features)
+        .data(filteredData.features)
         .enter()
         .append('path')
         .attr('class', 'province')

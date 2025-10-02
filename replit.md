@@ -46,6 +46,13 @@ Configured for Replit Autoscale deployment, suitable for static website hosting.
 - **Deployment**: Autoscale deployment configured for production
 
 ## Recent Changes
+- October 2, 2025: **Fixed Geo-Footprint Map Whitespace Issue** - Removed remote island polygons causing excessive whitespace
+  - **Problem**: Prince Edward Islands (South Africa's remote territories at -46° to -47° latitude) were included in the Western Cape GeoJSON data, causing D3.js projection to create massive whitespace below the main map
+  - **Solution**: Implemented `filterRemoteIslands()` function that filters out any polygon with centroid latitude south of -40°
+  - **Implementation**: Filter applied before D3.js projection calculates map extent, ensuring only mainland South Africa is displayed
+  - **Result**: Successfully filtered 2 remote island polygons from Western Cape data (confirmed in browser console)
+  - **Map Display**: Mainland South Africa now fills the viewport properly without excess whitespace
+  - **Preserved Features**: All 19 company location markers and 9 mainland provinces remain intact
 - October 2, 2025: **GitHub Import Complete** - Alteram website successfully configured for Replit environment
   - **Import Type**: Fresh GitHub repository clone
   - **Environment Status**: All systems operational and verified
