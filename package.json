@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:map": "npx -p typescript tsc"
+    "build:map": "npx -p typescript tsc",
+    "build": "npm run build:map"
   },
   "keywords": [],
   "author": "",
