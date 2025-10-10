@@ -393,7 +393,8 @@ section {
     height: auto;
     display: block;
     border-radius: 30px;
-    object-fit: contain;
+    object-fit: cover;
+    max-height: 600px;
 }
 
 .video-sound-toggle {

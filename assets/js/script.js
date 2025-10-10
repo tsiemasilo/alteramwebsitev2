@@ -7,6 +7,7 @@ window.addEventListener('load', function() {
         
         if (heroBackgroundVideo) {
             setTimeout(function() {
+                heroBackgroundVideo.load();
                 heroBackgroundVideo.classList.add('visible');
                 heroBackgroundVideo.play().catch(function(error) {
                     console.log('Video autoplay failed:', error);
