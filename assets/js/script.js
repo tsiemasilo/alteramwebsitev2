@@ -2,14 +2,17 @@ window.addEventListener('load', function() {
     const loadingScreen = document.getElementById('loadingScreen');
     const heroBackgroundVideo = document.getElementById('heroBackgroundVideo');
     
-    if (heroBackgroundVideo) {
-        heroBackgroundVideo.play().catch(function(error) {
-            console.log('Video autoplay failed:', error);
-        });
-    }
-    
     setTimeout(function() {
         loadingScreen.classList.add('hidden');
+        
+        if (heroBackgroundVideo) {
+            setTimeout(function() {
+                heroBackgroundVideo.classList.add('visible');
+                heroBackgroundVideo.play().catch(function(error) {
+                    console.log('Video autoplay failed:', error);
+                });
+            }, 800);
+        }
     }, 500);
 });
 
