@@ -1,7 +1,18 @@
 window.addEventListener('load', function() {
     const loadingScreen = document.getElementById('loadingScreen');
+    const heroBackgroundVideo = document.getElementById('heroBackgroundVideo');
+    
     setTimeout(function() {
         loadingScreen.classList.add('hidden');
+        
+        if (heroBackgroundVideo) {
+            setTimeout(function() {
+                heroBackgroundVideo.classList.add('visible');
+                heroBackgroundVideo.play().catch(function(error) {
+                    console.log('Video autoplay failed:', error);
+                });
+            }, 800);
+        }
     }, 500);
 });
 
@@ -12,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-menu a');
     const heroLogoInitial = document.getElementById('heroLogoInitial');
-    const signatureText = document.getElementById('signatureText');
     const heroContent = document.getElementById('heroContent');
     
     let scrollStage = 0;
@@ -59,29 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     navbar.classList.remove('scrolled');
                 }
                 
-                if (currentScrollY > 50 && currentScrollY < 600) {
+                if (currentScrollY >= 300) {
                     if (scrollStage !== 1) {
                         scrollStage = 1;
                         heroLogoInitial.classList.add('hidden');
-                        signatureText.classList.remove('hidden');
-                        signatureText.classList.add('visible');
-                        heroContent.classList.remove('visible');
-                        heroContent.classList.add('hidden');
-                    }
-                } else if (currentScrollY >= 600) {
-                    if (scrollStage !== 2) {
-                        scrollStage = 2;
-                        signatureText.classList.remove('visible');
-                        signatureText.classList.add('hidden');
                         heroContent.classList.remove('hidden');
                         heroContent.classList.add('visible');
                     }
-                } else if (currentScrollY <= 50) {
+                } else if (currentScrollY < 300) {
                     if (scrollStage !== 0) {
                         scrollStage = 0;
                         heroLogoInitial.classList.remove('hidden');
-                        signatureText.classList.remove('visible');
-                        signatureText.classList.add('hidden');
                         heroContent.classList.remove('visible');
                         heroContent.classList.add('hidden');
                     }
