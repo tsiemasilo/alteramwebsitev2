@@ -212,8 +212,8 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1;
-    z-index: 0;
+    z-index: 1;
+    display: block;
 }
 
 .hero-overlay {
@@ -223,7 +223,8 @@ html {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.3);
-    z-index: 1;
+    z-index: 2;
+    pointer-events: none;
 }
 
 .hero-stage {
@@ -231,7 +232,7 @@ html {
     top: 0;
     height: 100vh;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
 }
 
 .hero-stage-inner {
@@ -387,10 +388,10 @@ section {
 .video-container video {
     width: 100%;
     height: auto;
+    min-height: 400px;
     display: block;
     border-radius: 30px;
-    object-fit: cover;
-    max-height: 600px;
+    object-fit: contain;
 }
 
 .video-sound-toggle {
