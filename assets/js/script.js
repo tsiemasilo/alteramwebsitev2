@@ -3,7 +3,6 @@ window.addEventListener('load', function() {
     const heroBackgroundVideo = document.getElementById('heroBackgroundVideo');
     
     if (heroBackgroundVideo) {
-        heroBackgroundVideo.classList.add('visible');
         heroBackgroundVideo.play().catch(function(error) {
             console.log('Video autoplay failed:', error);
         });
