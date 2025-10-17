@@ -1169,8 +1169,104 @@ section {
 
 .clients-section-page {
     background: var(--white);
-    padding: 80px 0;
+    padding: 80px 0 0 0;
     overflow: hidden;
+    position: relative;
+}
+
+.clients-intro {
+    margin: 40px 0 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 30px 50px;
+    background: linear-gradient(135deg, rgba(44, 62, 122, 0.05), rgba(245, 166, 35, 0.05));
+    border-radius: 60px;
+    border: 2px solid rgba(245, 166, 35, 0.2);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.8s ease 0.3s forwards;
+}
+
+.trust-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.trust-badge:hover::before {
+    opacity: 1;
+}
+
+.trust-badge:hover {
+    transform: translateY(-5px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 15px 40px rgba(245, 166, 35, 0.2);
+}
+
+.trust-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-color), #1a2847);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+}
+
+.trust-badge:hover .trust-icon {
+    transform: scale(1.1) rotate(360deg);
+    background: linear-gradient(135deg, var(--secondary-color), #d68910);
+}
+
+.trust-icon i {
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.trust-content h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.trust-content p {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.transition-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.transition-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 120px;
 }
 
 .logo-slider {
@@ -1247,13 +1343,99 @@ section {
 
 .geo-footprint-section {
     background: var(--bg-light);
-    padding: 120px 0;
+    padding: 80px 0 120px;
     min-height: 120vh;
     overflow: hidden;
+    position: relative;
+}
+
+.geo-stats-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 50px auto;
+    padding: 40px 60px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 2px solid rgba(245, 166, 35, 0.2);
+    max-width: fit-content;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.8s ease 0.2s forwards;
+}
+
+.geo-stat-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.geo-stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.geo-stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.geo-stat-label {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.geo-stat-divider {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, var(--secondary-color), transparent);
+}
+
+.map-wrapper {
+    position: relative;
+    margin-top: 60px;
+}
+
+.map-decoration {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+.map-deco-1 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    top: -50px;
+    left: -50px;
+    animation: floatAnimation 8s ease-in-out infinite;
+}
+
+.map-deco-2 {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(225deg, var(--secondary-color), var(--primary-color));
+    bottom: -30px;
+    right: -30px;
+    animation: floatAnimation 6s ease-in-out infinite reverse;
+}
+
+@keyframes floatAnimation {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(20px, -20px) rotate(180deg); }
 }
 
 #map-container {
-    margin-top: 60px;
     padding: 40px;
     background: var(--white);
     border-radius: 20px;
@@ -1263,6 +1445,36 @@ section {
     align-items: center;
     min-height: 900px;
     overflow: hidden;
+    position: relative;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeSlideUp 0.8s ease 0.4s forwards;
+}
+
+#map-container::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background-size: 200% 200%;
+    animation: gradientRotate 3s ease infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#map-container:hover::before {
+    opacity: 0.3;
+}
+
+@keyframes gradientRotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 #south-africa-map {
@@ -1272,7 +1484,75 @@ section {
     min-height: 900px;
 }
 
+.geo-footer-text {
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.6s forwards;
+}
+
+.geo-footer-text i {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
 @media (max-width: 768px) {
+    .trust-badge {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px 30px;
+    }
+    
+    .trust-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .trust-content p {
+        font-size: 0.95rem;
+    }
+    
+    .transition-wave {
+        height: 80px;
+    }
+    
+    .transition-wave svg {
+        height: 80px;
+    }
+    
+    .geo-stats-banner {
+        flex-direction: column;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+    
+    .geo-stat-divider {
+        width: 80px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+    }
+    
+    .geo-stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .geo-stat-label {
+        font-size: 0.85rem;
+    }
+    
+    .map-decoration {
+        opacity: 0.05;
+    }
+    
     .geo-footprint-section {
         padding: 60px 0;
         min-height: auto;
@@ -1286,6 +1566,13 @@ section {
     #south-africa-map {
         height: 500px;
         min-height: 500px;
+    }
+    
+    .geo-footer-text {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 1rem;
+        padding: 0 20px;
     }
 }
 
