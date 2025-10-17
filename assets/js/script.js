@@ -1,3 +1,27 @@
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Scroll progress indicator
+const scrollProgress = document.getElementById('scrollProgress');
+if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + '%';
+    });
+}
+
 window.addEventListener('load', function() {
     const loadingScreen = document.getElementById('loadingScreen');
     const heroBackgroundVideo = document.getElementById('heroBackgroundVideo');
@@ -134,15 +158,21 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animated');
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .contact-item').forEach(el => {
+    document.querySelectorAll('.service-card, .contact-item, .section-title, .section-subtitle').forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
         observer.observe(el);
+    });
+
+    // Add stagger animation to service cards
+    document.querySelectorAll('.service-card').forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.15}s`;
     });
 
     // Enhanced About Section Animations
