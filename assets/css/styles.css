@@ -90,6 +90,46 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Section Page Transitions */
+.section-transition {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.section-hidden {
+    opacity: 0;
+}
+
+/* Smooth section backgrounds */
+section {
+    position: relative;
+    transition: background-color 0.5s ease;
+}
+
+/* Add connecting gradients between sections */
+section::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.section-visible::after {
+    opacity: 1;
+}
+
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -1095,10 +1135,28 @@ section {
     }
 }
 
+.services-section {
+    position: relative;
+    background: var(--white);
+}
+
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--white) 100%);
+    pointer-events: none;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    position: relative;
+    z-index: 1;
 }
 
 .service-card {
@@ -1576,10 +1634,28 @@ section {
     }
 }
 
+.vacancies-section {
+    position: relative;
+    background: var(--white);
+}
+
+.vacancies-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--white) 100%);
+    pointer-events: none;
+}
+
 .vacancies-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .career-info {
@@ -1667,6 +1743,18 @@ section {
 
 .contact-section {
     background: var(--bg-light);
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(180deg, var(--white) 0%, var(--bg-light) 100%);
+    pointer-events: none;
 }
 
 .contact-content {

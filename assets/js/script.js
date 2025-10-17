@@ -148,12 +148,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Advanced Scroll-Triggered Animation System
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    // Section Page Transitions
+    const sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+                entry.target.classList.remove('section-hidden');
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '-50px 0px -50px 0px'
+    });
+
+    // Observe all main sections for page transitions
+    document.querySelectorAll('section').forEach((section, index) => {
+        // Hero section is already visible, don't animate it on load
+        if (index === 0) {
+            section.classList.add('section-visible');
+        } else {
+            section.classList.add('section-transition');
+        }
+        sectionObserver.observe(section);
+    });
+
+    // Element fade-in observer
+    const elementObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -163,16 +189,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .contact-item, .section-title, .section-subtitle').forEach((el, index) => {
+    // Animate various elements with stagger
+    const animatedElements = document.querySelectorAll('.service-card, .contact-item, .logo-item, .vacancy-form, .career-info');
+    animatedElements.forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
-        observer.observe(el);
+        el.style.transform = 'translateY(40px)';
+        el.style.transition = `opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`;
+        elementObserver.observe(el);
     });
 
-    // Add stagger animation to service cards
-    document.querySelectorAll('.service-card').forEach((card, index) => {
-        card.style.transitionDelay = `${index * 0.15}s`;
+    // Parallax scroll effect for sections
+    let scrollPos = 0;
+    window.addEventListener('scroll', () => {
+        scrollPos = window.pageYOffset;
+        
+        // Parallax effect for about section shapes
+        const aboutSection = document.querySelector('.about-section');
+        if (aboutSection) {
+            const aboutRect = aboutSection.getBoundingClientRect();
+            if (aboutRect.top < window.innerHeight && aboutRect.bottom > 0) {
+                const offset = (aboutRect.top - window.innerHeight) * 0.3;
+                document.querySelectorAll('.floating-shapes .shape').forEach((shape, index) => {
+                    shape.style.transform = `translate(${offset * (index + 1) * 0.05}px, ${offset * 0.1}px)`;
+                });
+            }
+        }
+
+        // Parallax for geo decorations
+        const geoSection = document.querySelector('.geo-footprint-section');
+        if (geoSection) {
+            const geoRect = geoSection.getBoundingClientRect();
+            if (geoRect.top < window.innerHeight && geoRect.bottom > 0) {
+                const offset = (geoRect.top - window.innerHeight) * 0.2;
+                document.querySelectorAll('.map-decoration').forEach((deco, index) => {
+                    deco.style.transform = `translate(${offset * (index === 0 ? 1 : -1) * 0.08}px, ${offset * 0.08}px)`;
+                });
+            }
+        }
     });
 
     // Enhanced About Section Animations
