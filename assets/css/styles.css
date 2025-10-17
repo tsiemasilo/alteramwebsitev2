@@ -379,11 +379,6 @@ section {
     margin-bottom: 50px;
 }
 
-.about-section .page-number {
-    background: linear-gradient(135deg, var(--secondary-color), #d68910);
-    box-shadow: 0 4px 20px rgba(245, 166, 35, 0.4);
-}
-
 .video-container {
     position: relative;
     max-width: 95%;
@@ -458,160 +453,44 @@ section {
 }
 
 .about-section {
-    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    background: var(--bg-light);
     position: relative;
     overflow: hidden;
-    padding: 120px 0;
-}
-
-.about-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(44, 62, 122, 0.15) 0%, transparent 50%);
-    pointer-events: none;
-    animation: pulseGlow 8s ease-in-out infinite;
-}
-
-.about-section::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(255, 255, 255, 0.03) 2px,
-            rgba(255, 255, 255, 0.03) 4px
-        );
-    animation: gridMove 20s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes pulseGlow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
-
-@keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-}
-
-.about-section .section-title {
-    color: var(--white);
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    text-shadow: 0 0 30px rgba(245, 166, 35, 0.5);
-}
-
-.about-section .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--secondary-color), transparent);
-    border-radius: 2px;
-    animation: expandWidth 1.5s ease-out;
-}
-
-@keyframes expandWidth {
-    from { width: 0; }
-    to { width: 100%; }
+    padding: 80px 0;
 }
 
 .about-content {
     display: grid;
-    gap: 80px;
+    gap: 50px;
     position: relative;
     z-index: 1;
-}
-
-.about-text {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    padding: 50px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-
-.about-text::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(245, 166, 35, 0.1),
-        transparent
-    );
-    transform: rotate(45deg);
-    transition: all 0.6s ease;
-}
-
-.about-text:hover::before {
-    transform: rotate(45deg) translate(50%, 50%);
-}
-
-.about-text:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(245, 166, 35, 0.2);
-    border-color: rgba(245, 166, 35, 0.3);
 }
 
 .about-text h3 {
-    color: var(--secondary-color);
-    font-size: 2.5rem;
-    margin-bottom: 25px;
-    font-weight: 700;
-    position: relative;
-    z-index: 1;
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 .about-text p {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 20px;
-    line-height: 1.9;
-    font-size: 1.1rem;
-    position: relative;
-    z-index: 1;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.8;
 }
 
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .value-card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    padding: 45px 35px;
-    border-radius: 20px;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
     text-align: center;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
     transform-style: preserve-3d;
@@ -626,7 +505,7 @@ section {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(245, 166, 35, 0.3), transparent);
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.15), transparent);
     transform: translate(-50%, -50%);
     transition: width 0.6s ease, height 0.6s ease;
 }
@@ -637,45 +516,39 @@ section {
 }
 
 .value-card:hover {
-    transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+    transform: translateY(-10px) rotateX(3deg) rotateY(3deg);
     box-shadow: 
-        0 25px 70px rgba(245, 166, 35, 0.4),
-        0 0 100px rgba(44, 62, 122, 0.3) inset;
-    border-color: rgba(245, 166, 35, 0.5);
+        0 20px 50px rgba(245, 166, 35, 0.3),
+        var(--shadow-lg);
 }
 
 .value-card i {
-    font-size: 4rem;
+    font-size: 3rem;
     color: var(--secondary-color);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     display: inline-block;
     transition: all 0.5s ease;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 0 20px rgba(245, 166, 35, 0.6));
 }
 
 .value-card:hover i {
     transform: scale(1.2) rotateY(360deg);
-    filter: drop-shadow(0 0 30px rgba(245, 166, 35, 0.9));
 }
 
 .value-card h4 {
-    color: var(--white);
-    margin-bottom: 18px;
-    font-size: 1.5rem;
-    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
     position: relative;
     z-index: 1;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .value-card p {
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.7;
+    color: var(--text-light);
+    line-height: 1.6;
     position: relative;
     z-index: 1;
-    font-size: 1.05rem;
 }
 
 .value-card:nth-child(1) { animation: floatIn 0.8s ease-out 0.1s both; }

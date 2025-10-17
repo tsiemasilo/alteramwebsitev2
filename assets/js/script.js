@@ -148,53 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced About Section Animations
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection) {
-        // Create floating particles
-        const createParticles = () => {
-            const particleCount = 15;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'floating-particle';
-                particle.style.cssText = `
-                    position: absolute;
-                    width: ${Math.random() * 6 + 2}px;
-                    height: ${Math.random() * 6 + 2}px;
-                    background: rgba(245, 166, 35, ${Math.random() * 0.5 + 0.2});
-                    border-radius: 50%;
-                    left: ${Math.random() * 100}%;
-                    top: ${Math.random() * 100}%;
-                    animation: floatParticle ${Math.random() * 10 + 15}s linear infinite;
-                    animation-delay: ${Math.random() * 5}s;
-                    pointer-events: none;
-                    filter: blur(1px);
-                    z-index: 0;
-                `;
-                aboutSection.appendChild(particle);
-            }
-        };
-        
-        // Add keyframe animation for particles
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes floatParticle {
-                0% {
-                    transform: translate(0, 0) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translate(${Math.random() * 200 - 100}px, -100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        createParticles();
-
         // 3D card tilt effect on mouse move
         const valueCards = document.querySelectorAll('.value-card');
         valueCards.forEach(card => {
@@ -206,38 +159,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
                 
-                card.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                card.style.transform = `translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
             });
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0) rotateX(0deg) rotateY(0deg) scale(1)';
             });
-        });
-
-        // Parallax effect on scroll
-        let aboutTicking = false;
-        const aboutText = document.querySelector('.about-text');
-        
-        const updateParallax = () => {
-            const rect = aboutSection.getBoundingClientRect();
-            const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-            
-            if (aboutText && scrollPercent > 0 && scrollPercent < 1) {
-                const moveY = (scrollPercent - 0.5) * 30;
-                aboutText.style.transform = `translateY(${moveY}px)`;
-            }
-            
-            aboutTicking = false;
-        };
-        
-        window.addEventListener('scroll', () => {
-            if (!aboutTicking) {
-                requestAnimationFrame(updateParallax);
-                aboutTicking = true;
-            }
         });
     }
 
