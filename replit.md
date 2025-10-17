@@ -1,155 +1,31 @@
 # Alteram Website v2
 
 ## Overview
-Modern, responsive redesign of the Alteram website featuring all requested sections and built with clean HTML, CSS, and JavaScript.
+A modern, responsive redesign of the Alteram website, featuring all requested sections and built with clean HTML, CSS, and JavaScript. The project aims to enhance Alteram's online presence with a focus on user experience, interactive elements, and clear presentation of its ICT services. Key capabilities include an interactive South Africa geo-footprint map, dynamic client showcases, and streamlined contact/vacancy forms.
 
-## Project Structure
-- `index.html` - Main website file
-- `src/geo-map.ts` - TypeScript source for D3.js map visualization
-- `assets/js/geo-map.js` - Compiled JavaScript for interactive map
-- `assets/js/script.js` - JavaScript for interactivity and animations
-- `assets/css/styles.css` - Stylesheet with modern responsive design
-- `assets/images/` - Logo and image assets
-- `server.py` - Python HTTP server for development
-- `package.json` - Node.js dependencies (D3.js, TypeScript)
-- `tsconfig.json` - TypeScript compiler configuration
+## User Preferences
+I want iterative development.
+Ask before making major changes.
+I prefer detailed explanations.
+Do not make changes to the folder `Z`.
+Do not make changes to the file `Y`.
 
-## Sections
-1. **Home** - Hero section with tagline "Your Vision DELIVERED"
-2. **About Us** - Company overview and core values (Customer Focused, Quality, Innovation, People Centric)
-3. **Services** - ICT services including Managed Services, CRM Solutions, Data Analytics, SAP Competency Centre
-4. **Our Clients** - Scrolling showcase of client logos (past and present)
-5. **Geo-Footprint** - Interactive map of South Africa with 19 location markers showing regional presence
-6. **Vacancies** - Career opportunities and CV submission form
-7. **Contact Us** - Contact information and inquiry form with interactive card
+## System Architecture
+The website is built using HTML5, CSS3 (with modern animations and responsive design), and vanilla JavaScript. TypeScript and D3.js are used for advanced interactive map visualizations. The design incorporates Alteram's brand colors (navy #2c3e7a, orange #f5a623, light gray #f8f9fa) and includes modern UI/UX elements such as animated hero sections, dynamic section titles, sweeping gradient effects on service cards, grayscale-to-color client logo transitions, and focus animations for forms. All animations are optimized using CSS transforms and opacity for GPU acceleration.
 
-## Technology Stack
-- HTML5
-- CSS3 (with modern animations and responsive design)
-- TypeScript + D3.js (for interactive map visualization)
-- Vanilla JavaScript
-- Node.js 20 (for TypeScript compilation)
-- Python 3.11 (development server)
-- Font Awesome icons
+Core features include:
+- **Home:** Hero section with "Your Vision DELIVERED" tagline and interactive elements.
+- **About Us:** Company overview and core values (Customer Focused, Quality, Innovation, People Centric).
+- **Services:** ICT services covering Managed Services, CRM Solutions, Data Analytics, and an SAP Competency Centre.
+- **Our Clients:** Scrolling showcase of client logos with interactive hover effects.
+- **Geo-Footprint:** An interactive D3.js map of South Africa displaying 19 company locations with accurate province boundaries and smart label positioning.
+- **Vacancies:** Career opportunities section with a CV submission form.
+- **Contact Us:** Contact information and inquiry form with interactive card elements.
 
-## Development
-The website runs on port 5000 using a Python HTTP server with cache control headers to ensure fresh content during development.
+The development environment uses a Python 3.11 HTTP server, and the project is configured for Replit Autoscale deployment for static website hosting. TypeScript compilation is handled via Node.js 20.
 
-## Deployment
-Configured for Replit Autoscale deployment, suitable for static website hosting.
-
-## Replit Environment Setup
-- **Python Module**: Python 3.11 installed and configured
-- **Workflow**: Configured to run `python server.py` on port 5000
-- **Server**: Binds to 0.0.0.0:5000 for proper Replit proxy compatibility
-- **Cache Control**: Headers configured to prevent caching during development
-- **Deployment**: Autoscale deployment configured for production
-
-## Recent Changes
-- October 2, 2025: **Fixed Geo-Footprint Map Whitespace Issue** - Removed remote island polygons causing excessive whitespace
-  - **Problem**: Prince Edward Islands (South Africa's remote territories at -46° to -47° latitude) were included in the Western Cape GeoJSON data, causing D3.js projection to create massive whitespace below the main map
-  - **Solution**: Implemented `filterRemoteIslands()` function that filters out any polygon with centroid latitude south of -40°
-  - **Implementation**: Filter applied before D3.js projection calculates map extent, ensuring only mainland South Africa is displayed
-  - **Result**: Successfully filtered 2 remote island polygons from Western Cape data (confirmed in browser console)
-  - **Map Display**: Mainland South Africa now fills the viewport properly without excess whitespace
-  - **Preserved Features**: All 19 company location markers and 9 mainland provinces remain intact
-- October 2, 2025: **GitHub Import Complete** - Alteram website successfully configured for Replit environment
-  - **Import Type**: Fresh GitHub repository clone
-  - **Environment Status**: All systems operational and verified
-  - **Python**: Python 3.12 confirmed working (server.py runs on 0.0.0.0:5000)
-  - **Node.js**: Node.js 20 installed with all dependencies (TypeScript, D3.js, @types/d3)
-  - **TypeScript**: Successfully compiled src/geo-map.ts to assets/js/geo-map.js
-  - **Workflow**: "Website" workflow running smoothly with clean server logs
-  - **Assets**: All resources loading successfully (HTML, CSS, JavaScript, images, videos, client logos)
-  - **Deployment**: Autoscale deployment pre-configured and ready for production
-  - **Server Configuration**: Properly binds to 0.0.0.0:5000 for Replit proxy compatibility
-  - **Cache Control**: No-cache headers configured for optimal development experience
-  - **Visual Verification**: Loading screen animation and full website rendering confirmed functional
-  - **Result**: Website fully operational and ready for use in Replit environment
-- October 2, 2025: Finalized Geo-Footprint map with embedded GeoJSON data
-  - **GeoJSON Embedding**: Successfully embedded 154KB GeoJSON data directly into sa-map.js to eliminate CORS issues
-  - **Data Integration**: Replaced external fetch() calls with inline GeoJSON data for reliable map rendering
-  - **Province Validation**: Confirmed all 9 provinces present: Northern Cape, KwaZulu-Natal, Free State, Eastern Cape, Limpopo, North West, Mpumalanga, Western Cape, Gauteng
-  - **Map Initialization**: D3.js geoMercator projection with fitExtent() properly scales South Africa map with 19 location markers
-  - **Loading Screen Optimization**: Reduced loading delay from 3.5s to 500ms for faster content display
-  - **File Structure**: sa-map.js contains embedded GeoJSON, location markers array, and D3 rendering code
-  - **Browser Testing**: All resources loading successfully (HTTP 200), no JavaScript errors, map ready for user interaction
-  - **Result**: Map fully functional with accurate South Africa province boundaries and all company locations properly displayed
-- October 2, 2025: Fixed South Africa map outline with accurate province boundaries
-  - **GeoJSON Update**: Replaced fabricated hand-drawn province coordinates with authentic GeoJSON from authoritative source
-  - **Data Source**: Using community-vetted GeoJSON from MeganBeckett's gist with accurate South Africa province boundaries
-  - **Province Count**: All 9 provinces properly rendered: Northern Cape, Eastern Cape, Western Cape, Free State, KwaZulu-Natal, Gauteng, Mpumalanga, Limpopo, North West
-  - **Projection Fix**: Updated D3.js projection to use `.fitExtent()` for automatic scale/translation calculation (removed hard-coded values)
-  - **Map Shape**: Now displays correct South Africa outline matching the reference image with proper province borders
-  - **Interactive Features**: Maintained all 19 location markers with hover effects and labels
-  - **Result**: Map outline now accurately represents South Africa's geographic shape with all provincial boundaries
-- October 2, 2025: Expanded Geo-Footprint section (Page 5) for full map visibility
-  - **Map Display Fix**: Increased map container and section size to ensure complete map visibility without cutoff
-  - **Section Height**: Set geo-footprint section to `min-height: 100vh` and increased padding from 100px to 120px
-  - **Map Container**: Added `min-height: 700px` to ensure adequate space for the full map display
-  - **SVG Sizing**: Increased map dimensions from 800px max-width to 1000px, with explicit height of 700px (previously auto)
-  - **Mobile Optimization**: Updated responsive styles with 500px height for mobile devices
-  - **Result**: Page 5 now displays the complete South Africa map without any cutoff, with all 19 location markers fully visible
-- October 2, 2025: GitHub Repository Import - Successfully configured for Replit environment
-  - **Import Source**: Fresh GitHub clone imported into Replit
-  - **Environment Verification**: Confirmed Python 3.12 and Node.js 20 installed and operational
-  - **Dependency Management**: All Node.js packages (TypeScript, D3.js, @types/d3) already installed and functional
-  - **TypeScript Build**: Fixed npm build script to use `npx -p typescript tsc` for proper compilation
-  - **Workflow Status**: "Website" workflow running successfully on port 5000 with clean logs
-  - **Server Configuration**: Verified server.py binds to 0.0.0.0:5000 for Replit proxy compatibility
-  - **Cache Control**: Confirmed no-cache headers configured for development
-  - **Asset Loading**: All resources verified loading successfully (HTML, CSS, JS, images, videos)
-  - **Deployment Setup**: Configured autoscale deployment with `python server.py` command
-  - **Visual Verification**: Loading screen animation and website rendering confirmed working
-  - **Status**: Import complete and fully operational
-- October 2, 2025: Fixed Geo-Footprint map D3.js projection bug
-  - **Map Rendering Fix**: Resolved critical issue where location markers were clustered in center instead of properly distributed across South Africa map
-  - **Root Cause**: D3.js projection was incorrectly configured - `.fitSize()` calculates optimal scale AND translation, but we were then calling `.translate()` which overrode the calculated translation, breaking the projection
-  - **Solution Implemented**:
-    - Replaced `.fitSize().translate()` with `.fitExtent()` which properly fits the map with padding
-    - Added initialization safeguards: container dimension validation, retry mechanism (100ms timeout), IntersectionObserver for lazy loading
-    - Prevents duplicate map initialization with `mapInitialized` flag
-    - Added cache-busting parameter `?v=2` to force browser to load updated JavaScript
-  - **Result**: Map now correctly displays South Africa outline with 19 location markers properly positioned across the country using accurate geographic coordinates
-- October 2, 2025: Successfully configured GitHub import for Replit environment
-  - **Node.js Dependencies**: Installed TypeScript, D3.js, and @types/d3 via npm
-  - **TypeScript Compilation**: Compiled src/geo-map.ts to assets/js/geo-map.js using `npm run build:map`
-  - **Server Optimization**: Enhanced server.py to gracefully handle BrokenPipeError and ConnectionResetError (common with video streaming)
-  - **Git Configuration**: Updated .gitignore to exclude node_modules/ and package-lock.json
-  - **Workflow Verification**: Confirmed "Website" workflow running smoothly on port 5000 with clean logs
-  - **Asset Verification**: All resources loading successfully (HTML, CSS, JS, images, videos)
-  - **Deployment Ready**: Autoscale deployment pre-configured in .replit file
-- October 2, 2025: Upgraded Geo-Footprint section (Page 5) to programmatic TypeScript + D3.js implementation
-  - **Technology Upgrade**: Replaced static image-based map with programmatically-drawn SVG map using TypeScript and D3.js
-  - **Advanced Visualization**: Implemented D3.js geoMercator projection with embedded GeoJSON data for South Africa outline
-  - **19 Interactive Locations**: All markers positioned using geographic coordinates with D3 projection
-    - Locations: North West (42), Polokwane, Limpopo (52), Zeerust, Mbombela, Mpumalanga (48), Kimberley, Centurion, Midrand (HEAD OFFICE), Gauteng (53), Northern Cape (53), Margate, KwaZulu-Natal (81), Western Cape (23), Cape Town, East London, Bloemfontein, Free State (26), Eastern Cape (72)
-  - **Interactive Features**: Hover effects (navy to orange transitions), click-to-activate functionality, smooth D3 transitions
-  - **Smart Label Positioning**: 8-directional label placement with connecting lines to prevent overlap
-  - **Responsive SVG**: Automatically scales to container with resize event handling
-  - **Build System**: TypeScript compilation with `npm run build:map` compiles src/geo-map.ts to assets/js/geo-map.js
-  - **Browser Compatibility**: CDN-based D3 import for browser ESM support without import maps
-  - **TypeScript Config**: Configured with noImplicitAny: false for cleaner compilation
-  - HEAD OFFICE (Midrand) has distinctive larger marker for prominence
-  - Scroll-triggered animations with staggered timing for visual appeal
-  - Fully responsive design optimized for desktop, tablet, and mobile devices
-- October 2, 2025: GitHub import successfully configured for Replit environment
-  - Verified Python 3.11 module installed and functional
-  - Confirmed workflow "Website" running successfully on port 5000
-  - Server properly configured with 0.0.0.0:5000 binding for Replit proxy compatibility
-  - Cache control headers configured (no-cache, no-store, must-revalidate) to prevent browser caching during development
-  - Deployment configured for autoscale (static website hosting) with production command `python server.py`
-  - All assets verified and loading correctly: HTML, CSS, JavaScript, images, client logos, and video
-  - Website rendering properly with loading screen, intro animation, and all interactive features
-  - .gitignore configured for Python, IDE files, and system files
-- October 2, 2025: Added hover indicator to Contact Us section
-  - Added animated "Hover Over Me" text with hand pointer icon below Alteram logo
-  - Included bouncing arrow animation to guide users
-  - Indicator fades out smoothly when contact card is hovered
-  - Fully responsive design for mobile devices
-  - Icons animate with pulse and bounce effects to attract attention
-- September 30, 2024: Initial website creation with all sections
-  - Integrated Alteram logo and brand colors (navy blue #2c3e7a and orange #f5a623)
-  - Implemented smooth scrolling navigation
-  - Added responsive mobile menu
-  - Created contact and vacancy forms
+## External Dependencies
+- **D3.js:** For interactive geographical map visualizations.
+- **Font Awesome:** For icons.
+- **Node.js 20:** For TypeScript compilation and dependency management.
+- **Python 3.11:** For the development HTTP server.
